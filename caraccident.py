@@ -9,7 +9,7 @@ import pickle
 
 with open("10 pipe.pkl", "rb") as file:
     try:
-        model = pickle.load(file)
+        pipe = pickle.load(file)
     except ModuleNotFoundError as e:
         print(f"Missing module: {e.name}")
 
