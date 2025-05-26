@@ -3,3 +3,8 @@ pandas
 numpy
 pillow
 streamlit
+streamlit
+scikit-learn
+pandas
+numpy
+xgboost
