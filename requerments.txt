@@ -1,11 +1,5 @@
 streamlit
-from PIL import Image
+scikit-learn
 pandas
 numpy
-pickle
-scikit-learn
-xgboost
-lightgbm
-joblib
 Pillow
-traceback
