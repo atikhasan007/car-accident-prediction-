@@ -4,14 +4,18 @@ import  pandas as pd
 import numpy as np
 
 import pickle
-# মডেল লোড
-import pickle
 
-with open("10 pipe.pkl", "rb") as file:
-    try:
+# মডেল লোড
+pipe = None  # আগে থেকেই define করে রাখুন
+
+try:
+    with open("10 pipe.pkl", "rb") as file:
         pipe = pickle.load(file)
-    except ModuleNotFoundError as e:
-        print(f"Missing module: {e.name}")
+except ModuleNotFoundError as e:
+    st.error(f"Model loading failed. Missing module: {e.name}")
+except Exception as e:
+    st.error(f"Model loading failed: {e}")
+
 
 
 # Streamlit অ্যাপ
