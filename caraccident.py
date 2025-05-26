@@ -5,13 +5,13 @@ import numpy as np
 
 import pickle
 # মডেল লোড
-pipe = pickle.load(open("/home/catpc/10 pipe.pkl", 'rb'))
+pipe = pickle.load(open("10 pipe.pkl", 'rb'))
 
 # Streamlit অ্যাপ
 st.title("Accident Prediction with Pipeline")
 
 # সরাসরি ছবি পাথ ব্যবহার করে লোড করো
-st.image("/home/catpc/Downloads/10 pipe img.png", caption="Prediction Pipeline", use_container_width=True)
+st.image("10 pipe img.png", caption="Prediction Pipeline", use_container_width=True)
 
 
 # predicition funtion=============================================================================================
