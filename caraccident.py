@@ -5,7 +5,14 @@ import numpy as np
 
 import pickle
 # মডেল লোড
-pipe = pickle.load(open("10 pipe.pkl", 'rb'))
+import pickle
+
+with open("10 pipe.pkl", "rb") as file:
+    try:
+        model = pickle.load(file)
+    except ModuleNotFoundError as e:
+        print(f"Missing module: {e.name}")
+
 
 # Streamlit অ্যাপ
 st.title("Accident Prediction with Pipeline")
