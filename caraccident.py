@@ -1,17 +1,7 @@
 import streamlit as st
-from PIL import Image
-import  pandas as pd
 import numpy as np
-
 import pickle
-# মডেল লোড
-pipe = pickle.load(open("10 pipe.pkl", 'rb'))
-
-# Streamlit অ্যাপ
-st.title("Accident Prediction with Pipeline")
-
-# সরাসরি ছবি পাথ ব্যবহার করে লোড করো
-st.image("10 pipe img.png", caption="Prediction Pipeline", use_container_width=True)
+from PIL import Image
 
 
 # predicition funtion=============================================================================================
@@ -23,32 +13,31 @@ def pred(Day_of_week, Age_band_of_driver, Sex_of_driver, Educational_level, Vehi
          Number_of_casualties, Vehicle_movement, Casualty_class, Sex_of_casualty,
          Age_band_of_casualty, Casualty_severity, Work_of_casuality, Fitness_of_casuality,
          Pedestrian_movement, Cause_of_accident, Hour_of_Day, pipe):
-         # Your prediction code here
-         features = [[Day_of_week, Age_band_of_driver, Sex_of_driver, Educational_level, Vehicle_driver_relation,
+    # Your prediction code here
+    features = np.array([[Day_of_week, Age_band_of_driver, Sex_of_driver, Educational_level, Vehicle_driver_relation,
                           Driving_experience, Type_of_vehicle, Owner_of_vehicle, Service_year_of_vehicle,
                           Defect_of_vehicle, Area_accident_occured, Lanes_or_Medians, Road_allignment,
                           Types_of_Junction, Road_surface_type, Road_surface_conditions, Light_conditions,
                           Weather_conditions, Type_of_collision, Number_of_vehicles_involved,
                           Number_of_casualties, Vehicle_movement, Casualty_class, Sex_of_casualty,
                           Age_band_of_casualty, Casualty_severity, Work_of_casuality, Fitness_of_casuality,
-                          Pedestrian_movement, Cause_of_accident, Hour_of_Day]]
+                          Pedestrian_movement, Cause_of_accident, Hour_of_Day]])
 
-         feature_columns = [
-             'Day_of_week', 'Age_band_of_driver', 'Sex_of_driver', 'Educational_level', 'Vehicle_driver_relation',
-             'Driving_experience', 'Type_of_vehicle', 'Owner_of_vehicle', 'Service_year_of_vehicle',
-             'Defect_of_vehicle', 'Area_accident_occured', 'Lanes_or_Medians', 'Road_allignment',
-             'Types_of_Junction', 'Road_surface_type', 'Road_surface_conditions', 'Light_conditions',
-             'Weather_conditions', 'Type_of_collision', 'Number_of_vehicles_involved',
-             'Number_of_casualties', 'Vehicle_movement', 'Casualty_class', 'Sex_of_casualty',
-             'Age_band_of_casualty', 'Casualty_severity', 'Work_of_casuality', 'Fitness_of_casuality',
-             'Pedestrian_movement', 'Cause_of_accident', 'Hour_of_Day'
-         ]
+    # Assuming pipe is your trained model pipeline
+    results = pipe.predict(features)
+    return results
 
-         features_df = pd.DataFrame.from_records(features, columns=feature_columns)
 
-        # Assuming pipe is your trained model pipeline
-         results = pipe.predict(features_df)
-         return results
+# create streamlit app==================================================================================================
+# load pipe and image
+pipe = pickle.load(open('10 pipe.pkl','rb'))
+img = Image.open('10 pipe img.png')
+
+
+
+st.title('Accident Severity Prediction With Sklearn Pipeline...')
+# Display the image
+st.image(img, use_column_width=True)
 
 
 # Sidebar for user inputs
@@ -128,6 +117,7 @@ with st.sidebar:
     Hour_of_Day = st.selectbox('Hour of Day', [17, 1, 14, 22, 8, 15, 12, 18, 13, 20, 16, 21, 9, 10, 19, 11, 23, 7, 0, 5, 6, 4, 3, 2])
 
 
+
 # Predict button
 if st.sidebar.button('Predict'):
     predicted_class = pred(Day_of_week=Day_of_week,
@@ -163,7 +153,7 @@ if st.sidebar.button('Predict'):
                            Hour_of_Day=Hour_of_Day,
                            pipe=pipe)
 
-    # এইখানে result show করলেই `NameError` হবে না
+    # Display prediction result
     if predicted_class[0] == 2:
         st.write("Predicted Injury: Slight Injury")
     elif predicted_class[0] == 1:
