@@ -1,2 +1,1 @@
-# CARACCIDENTPREDECTION
 # car-accident-prediction-
