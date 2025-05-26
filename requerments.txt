@@ -1,5 +1,8 @@
-streamlit
-scikit-learn
+
+streamlit	
+PIL (Image)	
 pandas
 numpy
-Pillow
+pickle
+traceback
+
