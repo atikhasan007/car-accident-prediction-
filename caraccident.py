@@ -18,7 +18,7 @@ with open("10 pipe.pkl", "rb") as file:
 st.title("Accident Prediction with Pipeline")
 
 # সরাসরি ছবি পাথ ব্যবহার করে লোড করো
-st.image("/home/catpc/Downloads/10 pipe img.png", caption="Prediction Pipeline", use_container_width=True)
+st.image("10 pipe img.png", caption="Prediction Pipeline", use_container_width=True)
 
 
 # predicition funtion=============================================================================================
