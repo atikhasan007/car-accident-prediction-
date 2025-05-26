@@ -6,16 +6,13 @@ import numpy as np
 import pickle
 # মডেল লোড
 #pipe = pickle.load(open("./10 pipe.pkl", 'rb'))
-
 import traceback
-
 try:
     pipe = pickle.load(open("10 pipe.pkl", 'rb'))
 except ModuleNotFoundError as e:
     st.error(f"ModuleNotFoundError: {e}")
     st.text(traceback.format_exc())
     raise e
-
 
 # Streamlit অ্যাপ
 st.title("Accident Prediction with Pipeline")
