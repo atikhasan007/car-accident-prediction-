@@ -26,10 +26,4 @@ The app allows users to input accident-related details and predicts whether the 
 
 ---
 
-## Installation
 
-1. **Clone the repository**
-
-```bash
-git clone https://github.com/your-username/accident-severity-app.git
-cd accident-severity-app
